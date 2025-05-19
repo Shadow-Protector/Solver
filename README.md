@@ -8,9 +8,9 @@ The Solver requires Envio Indexer setup to query on-chain data.![Repo Link](http
 
 ## Create an environment configuration and fill the below parameters
 
-ENVIO_ENDPOINT=""
-PRIVATE_KEY=""
-PAYOUT_ADDRESS=""
+    ENVIO_ENDPOINT=""
+    PRIVATE_KEY=""
+    PAYOUT_ADDRESS=""
 
 ## Execution
 
