@@ -62,8 +62,12 @@ async function startSolver(): Promise<void> {
             console.log("condition", conditionResult);
             if (conditionResult) {
               console.log("Execute Order");
-              const hash = await executeOrder(order);
-              console.log(`${order.orderId} has been executed with ${hash}`);
+              try {
+                const hash = await executeOrder(order);
+                console.log(`${order.orderId} has been executed with ${hash}`);
+              } catch (e) {
+                console.log("Operation Failed", e);
+              }
             }
           }
         }
