@@ -73,4 +73,5 @@ export async function executeOrder(order: Order) {
       [],
     ]);
   }
+  throw new Error("HANDLER_CONTRACT_NOT_FOUND");
 }
