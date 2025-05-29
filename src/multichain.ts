@@ -66,12 +66,29 @@ export async function evaluateCondition(order: Order, vaultOwner: string) {
 export async function executeOrder(order: Order) {
   const handlerContract = getHandlerContract(order.originChainId);
   if (handlerContract) {
-    return await handlerContract.write.executeOrder([
-      order.vault as `0x${string}`,
-      order.orderId,
-      payoutAddress as `0x${string}`,
-      [],
-    ]);
+    if (order.originChainId == order.destinationChainId) {
+      const SwapRoute = await getRoute(
+        order.originChainId,
+        order.depositToken,
+        order.convertToken,
+      );
+
+      return await handlerContract.write.executeOrder([
+        order.vault as `0x${string}`,
+        order.orderId,
+        payoutAddress as `0x${string}`,
+        SwapRoute,
+      ]);
+    }
   }
   throw new Error("HANDLER_CONTRACT_NOT_FOUND");
+}
+
+async function getRoute(
+  chainId: string,
+  depositToken: string,
+  convertToken: string,
+) {
+  console.log(chainId, depositToken, convertToken);
+  return [];
 }
