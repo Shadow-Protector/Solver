@@ -69,8 +69,8 @@ export async function executeOrder(order: Order) {
     if (order.originChainId == order.destinationChainId) {
       const SwapRoute = await getRoute(
         order.originChainId,
-        order.depositToken,
-        order.convertToken,
+        order.baseToken,
+        order.outputToken,
       );
 
       return await handlerContract.write.executeOrder([
@@ -86,9 +86,14 @@ export async function executeOrder(order: Order) {
 
 async function getRoute(
   chainId: string,
-  depositToken: string,
-  convertToken: string,
+  baseToken: string,
+  outputToken: string,
 ) {
-  console.log(chainId, depositToken, convertToken);
+  console.log(chainId, baseToken, outputToken);
+  // No Swap Required
+  if (baseToken == outputToken) {
+    return [];
+  }
+
   return [];
 }
