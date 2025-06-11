@@ -13,6 +13,8 @@ export const ALL_ORDERS_QUERY = `
       orderId
       vault
       originChainId
+      baseToken
+      outputToken
     }
   }
 `;
@@ -31,6 +33,8 @@ export const ACTIVE_ORDERS_QUERY = `query MyQuery {
     orderId
     vault
     originChainId
+    baseToken
+    outputToken
   }
 }`;
 
@@ -72,6 +76,8 @@ export type Order = {
   vault: string;
   orderId: string;
   originChainId: string;
+  baseToken: string;
+  outputToken: string;
   [key: string]: string;
 };
 
